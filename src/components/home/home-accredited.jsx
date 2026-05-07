@@ -3,6 +3,69 @@ import React from "react";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import OptimizedImage from "../common/optmized-image";
 
+const ACCREDITATIONS = [
+  {
+    id: "iao",
+    src: `${IMAGE_PATH}/IAO.webp`,
+    alt: "IAO logo",
+    link: "https://www.iao.org/India-Haryana/Academy-of-Internal-Audit",
+    containerClass: "hover:scale-110",
+    desktopImgClass: "w-40 h-40 object-contain",
+    mobileImgClass: "w-full h-full object-contain",
+  },
+  {
+    id: "iia",
+    src: `${IMAGE_PATH}/IIA.webp`,
+    alt: "IIA logo",
+    link: "https://iiaindia.co/GlobalCertification/LearningPartner",
+    containerClass: "scale-150 hover:scale-175",
+    desktopImgClass: "w-48 h-48 object-contain",
+    mobileImgClass: "w-full h-full object-contain",
+  },
+  {
+    id: "iso",
+    src: `${IMAGE_PATH}/ISO.webp`,
+    alt: "ISO logo",
+    containerClass: "hover:scale-110",
+    desktopImgClass: "w-40 h-40 object-contain",
+    mobileImgClass: "w-full h-full object-contain",
+  },
+  {
+    id: "gleim",
+    src: `${IMAGE_PATH}/Gleim.webp`,
+    alt: "Gleim logo",
+    containerClass: "hover:scale-110",
+    desktopImgClass: "w-40 h-40 object-contain",
+    mobileImgClass: "w-full h-full object-contain",
+  },
+  {
+    id: "gsaaa",
+    src: `${IMAGE_PATH}/GSAAA.webp`,
+    alt: "GSAAA logo",
+    link: "https://www.gsaaa.org/india/academy-of-internal-audit",
+    containerClass: "hover:scale-110",
+    desktopImgClass: "w-40 h-40 object-contain",
+    mobileImgClass: "w-[180px] h-[180px] object-contain",
+  },
+  {
+    id: "isaca",
+    src: `${IMAGE_PATH}/ISACA.webp`,
+    alt: "ISACA logo",
+    containerClass: "hover:scale-110",
+    desktopImgClass: "w-40 h-40 object-contain",
+    mobileImgClass: "w-full h-full object-contain",
+  },
+  {
+    id: "becker",
+    src: `${IMAGE_PATH}/BECKER.webp`,
+    alt: "Becker logo",
+    containerClass: "hover:scale-110",
+    desktopImgClass: "w-40 h-40 object-contain",
+    mobileImgClass: "w-full h-full object-contain",
+    mobileWrapperClass: "col-span-2 md:col-span-1", // Centers on odd mobile grid
+  },
+];
+
 const HomeAccredited = () => {
   return (
     <div className="py-8 max-w-340 mx-auto">
@@ -16,129 +79,63 @@ const HomeAccredited = () => {
 
       <div className="w-full py-10 bg-cover bg-center">
         {/* Desktop view  */}
-        <div className="hidden lg:flex justify-center gap-20 px-6">
-          <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-            <a
-              href="https://www.iao.org/India-Haryana/Academy-of-Internal-Audit"
-              target="_blank" rel="noreferrer"
+        <div className="hidden lg:flex flex-wrap justify-center gap-10 xl:gap-20 px-6">
+          {ACCREDITATIONS.map((item) => (
+            <div
+              key={item.id}
+              className={`grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 ${item.containerClass}`}
             >
-              <OptimizedImage
-                src={`${IMAGE_PATH}/IAO.webp`}
-                alt="IAO logo"
-                className="w-40 h-40 object-contain"
-                width={160}
-                height={160}
-              />
-            </a>
-          </div>
-
-          <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300  scale-150 hover:scale-175">
-            <a
-              href="https://iiaindia.co/GlobalCertification/LearningPartner"
-              target="_blank" rel="noreferrer"
-            >
-              <OptimizedImage
-                src={`${IMAGE_PATH}/IIA.webp`}
-                alt="IIA logo"
-                className="w-48 h-48 object-contain"
-                width={160}
-                height={160}
-              />
-            </a>
-          </div>
-
-          <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-            <OptimizedImage
-              src={`${IMAGE_PATH}/ISO.webp`}
-              alt="ISO logo"
-              className="w-40 h-40 object-contain"
-              width={160}
-              height={160}
-            />
-          </div>
-
-          <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-            <OptimizedImage
-              src={`${IMAGE_PATH}/Gleim.webp`}
-              alt="Gleim logo"
-              className="w-40 h-40 object-contain"
-              width={160}
-              height={160}
-            />
-          </div>
-
-          <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-            <a
-              href="https://www.gsaaa.org/india/academy-of-internal-audit"
-              target="_blank" rel="noreferrer"
-            >
-              <OptimizedImage
-                src={`${IMAGE_PATH}/GSAAA.webp`}
-                alt="GSAAA logo"
-                className="w-40 h-40 object-contain"
-                width={160}
-                height={160}
-              />
-            </a>
-          </div>
+              {item.link ? (
+                <a href={item.link} target="_blank" rel="noreferrer" aria-label={item.alt}>
+                  <OptimizedImage
+                    src={item.src}
+                    alt={item.alt}
+                    className={item.desktopImgClass}
+                    width={160}
+                    height={160}
+                    loading="lazy"
+                  />
+                </a>
+              ) : (
+                <OptimizedImage
+                  src={item.src}
+                  alt={item.alt}
+                  className={item.desktopImgClass}
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                />
+              )}
+            </div>
+          ))}
         </div>
 
         {/* Mobile view  */}
-        <div className="lg:hidden grid grid-cols-2 gap-8 px-6 place-items-center">
-          <div className=" flex items-center justify-center">
-            <a
-              href="https://www.iao.org/India-Haryana/Academy-of-Internal-Audit"
-              target="_blank" rel="noreferrer"
+        <div className="lg:hidden grid grid-cols-2 md:grid-cols-4 gap-8 px-6 place-items-center">
+          {ACCREDITATIONS.map((item) => (
+            <div
+              key={`${item.id}-mobile`}
+              className={`flex items-center justify-center ${item.mobileWrapperClass || ""}`}
             >
-              <OptimizedImage
-                src={`${IMAGE_PATH}/IAO.webp`}
-                alt="IAO logo"
-                className="w-full h-full object-contain"
-              />
-            </a>
-          </div>
-
-          <div className="flex items-center justify-center">
-            <a
-              href="https://iiaindia.co/GlobalCertification/LearningPartner"
-              target="_blank" rel="noreferrer"
-            >
-              <OptimizedImage
-                src={`${IMAGE_PATH}/IIA.webp`}
-                alt="IIA logo"
-                className="w-full h-full object-contain"
-              />
-            </a>
-          </div>
-
-          <div className="flex items-center justify-center">
-            <OptimizedImage
-              src={`${IMAGE_PATH}/ISO.webp`}
-              alt="ISO logo"
-              className="w-full h-full object-contain"
-            />
-          </div>
-
-          <div className="flex items-center justify-center">
-            <OptimizedImage
-              src={`${IMAGE_PATH}/Gleim.webp`}
-              alt="Gleim logo"
-              className="w-full h-full object-contain"
-            />
-          </div>
-
-          <div className="col-span-2 flex items-center justify-center">
-            <a
-              href="https://www.gsaaa.org/india/academy-of-internal-audit"
-              target="_blank" rel="noreferrer"
-            >
-              <OptimizedImage
-                src={`${IMAGE_PATH}/GSAAA.webp`}
-                alt="GSAAA logo"
-                className="w-[180px] h-[180px] object-contain"
-              />
-            </a>
-          </div>
+              {item.link ? (
+                <a href={item.link} target="_blank" rel="noreferrer" aria-label={item.alt}>
+                  <OptimizedImage
+                    src={item.src}
+                    alt={item.alt}
+                    className={item.mobileImgClass}
+                    loading="lazy"
+                  />
+                </a>
+              ) : (
+                <OptimizedImage
+                  src={item.src}
+                  alt={item.alt}
+                  className={item.mobileImgClass}
+                  loading="lazy"
+                />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

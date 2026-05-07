@@ -290,32 +290,33 @@ const CourseHighLight = ({
         </div>
 
         {logos.length > 0 && (
-          <div className="max-w-340 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6 px-2 mx-auto">
-            {logos.map((logo, index) => {
-              const Wrapper = logo.link ? "a" : "div";
-              const isLast = index == logos.length - 1;
+          <div className="max-w-[1400px] mx-auto px-4 mt-8 pb-8">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-8 md:gap-12 lg:gap-10">
+              {logos.map((logo, index) => {
+                const Wrapper = logo.link ? "a" : "div";
 
-              return (
-                <Wrapper
-                  key={index}
-                  {...(logo.link && {
-                    href: logo.link,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  })}
-                  className={`rounded-xl p-8 text-center transition-all duration-300 
-          flex items-center justify-center hover:scale-125 cursor-pointer
-          ${isLast ? "col-span-2 lg:col-span-1" : "lg:col-span-1"}`}
-                >
-                  <img
-                    src={logo.img}
-                    alt="Brand logo"
-                    className="max-w-full max-h-32 object-contain"
-                    loading="lazy"
-                  />
-                </Wrapper>
-              );
-            })}
+                return (
+                  <Wrapper
+                    key={index}
+                    {...(logo.link && {
+                      href: logo.link,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      "aria-label": logo.alt || "Partner logo",
+                    })}
+                    className="p-2 transition-all duration-300 flex items-center justify-center hover:scale-110 hover:-translate-y-1 cursor-pointer w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40"
+                    title={logo.alt}
+                  >
+                    <img
+                      src={logo.img}
+                      alt={logo.alt || "Brand logo"}
+                      className="max-w-full max-h-full object-contain transition-all duration-300"
+                      loading="lazy"
+                    />
+                  </Wrapper>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

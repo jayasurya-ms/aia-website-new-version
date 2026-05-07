@@ -13,31 +13,32 @@ const AccreditationBadges = () => {
       alt: "IIA",
       href: "https://iiaindia.co/GlobalCertification/LearningPartner",
     },
+      { img: `${IMAGE_PATH}/BECKER.webp`, alt: "Becker" },
     { img: `${IMAGE_PATH}/ISO.webp`, alt: "ISO" },
+        { img: `${IMAGE_PATH}/ISACA.webp`, alt: "ISACA" },
     { img: `${IMAGE_PATH}/Gleim.webp`, alt: "Gleim" },
     {
       img: `${IMAGE_PATH}/GSAAA.webp`,
       alt: "GSAAA",
       href: "https://www.gsaaa.org/india/academy-of-internal-audit",
-    },
+    },  
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-2 items-center">
-      {badges.map(({ img, alt, href }, index) => {
-        const isLast = index === badges.length - 1;
+    <div className="flex flex-wrap gap-3 items-center justify-start lg:justify-start">
+      {badges.map(({ img, alt, href }) => {
         const inner = (
-          <div className="bg-white border border-gray-700 rounded-lg p-2 w-full h-20 flex items-center justify-center transition-all duration-200 group-hover:border-[#fa8017] group-hover:scale-105">
+          <div className="bg-white border border-gray-200 shadow-sm rounded-lg p-2 w-[5.5rem] h-14 sm:w-24 sm:h-16 flex items-center justify-center transition-all duration-300 group-hover:border-[#fa8017] group-hover:shadow-md group-hover:-translate-y-1">
             <img
               src={img}
               alt={alt}
-              className="w-full h-full object-contain"
+              className="max-w-full max-h-full object-contain"
               loading="lazy"
             />
           </div>
         );
 
-        const wrapper = href ? (
+        return href ? (
           <a
             key={alt}
             href={href}
@@ -45,25 +46,13 @@ const AccreditationBadges = () => {
             rel="noopener noreferrer"
             className="group"
             title={alt}
+            aria-label={alt}
           >
             {inner}
           </a>
         ) : (
           <div key={alt} className="group" title={alt}>
             {inner}
-          </div>
-        );
-
-        return (
-          <div
-            key={alt}
-            className={
-              isLast ? "col-span-2 md:col-span-1 flex justify-center" : ""
-            }
-          >
-            <div className={isLast ? "w-1/2 md:w-full" : "w-full"}>
-              {wrapper}
-            </div>
           </div>
         );
       })}
@@ -92,18 +81,6 @@ export const PaymentAccreditation = () => (
             loading="lazy"
           />
         </div>
-
-        <a
-          href="tel:+18001200255"
-          className="grouprounded-xl p-3 flex items-center justify-center hover:border-[#fa8017]/40 transition-all duration-200"
-        >
-          <img
-            src={`${IMAGE_PATH}/toll free.webp`}
-            alt="Toll Free"
-            className="w-full h-20 object-contain group-hover:scale-105 transition-transform duration-200"
-            loading="lazy"
-          />
-        </a>
       </div>
     </div>
 
